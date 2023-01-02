@@ -23,7 +23,9 @@ function Book(title, author, pages, isRead) {
 }
 
 // Adds a book to the library list.
-function addToLibrary() { }
+function addToLibrary(book) {
+    library.push(book);
+}
 
 function hideAddBookWindow() {
     console.log("Clicked!");
@@ -41,7 +43,7 @@ submitBook.addEventListener("click", function (event) {
     let userRead = readInput.checked;
 
     let book = new Book(userTitle, userAuthor, userpages, userRead);
-    library.push(book);
+    addToLibrary(book);
 });
 
 closeWindow.addEventListener("click", hideAddBookWindow);
