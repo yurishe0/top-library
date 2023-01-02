@@ -10,8 +10,11 @@ const closeWindow = document.querySelector(".close");
 let library = [];
 
 // Book object constructor
-function Book() {
-
+function Book(title, author, pages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
 }
 
 // Adds a book to the library list.
@@ -31,7 +34,7 @@ closeWindow.addEventListener("click", hideAddBookWindow);
 
 newBook.addEventListener("click", () => {
     // Dim the site
-    mainWrapper.style.opacity = "0.1";
+    mainWrapper.style.opacity = "0.05";
     // Disable clicking outside of the addBookWindow
     mainWrapper.style.pointerEvents = "none";
     // Display the adding book window
