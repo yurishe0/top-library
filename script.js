@@ -5,6 +5,11 @@ const body = document.querySelector("body");
 const mainWrapper = document.querySelector(".main-wrapper");
 const addBookWindow = document.querySelector(".add-book-window");
 const closeWindow = document.querySelector(".close");
+const submitBook = document.querySelector('button[type="submit"]');
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector('#author');
+const pagesInput = document.querySelector('#pages');
+const readInput = document.querySelector('#read');
 
 // Stores all created book objects.
 let library = [];
@@ -18,9 +23,7 @@ function Book(title, author, pages, isRead) {
 }
 
 // Adds a book to the library list.
-function addToLibrary() {
-
-}
+function addToLibrary() { }
 
 function hideAddBookWindow() {
     console.log("Clicked!");
@@ -29,6 +32,17 @@ function hideAddBookWindow() {
     addBookWindow.style.display = "none";
 }
 
+submitBook.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    let userTitle = titleInput.value;
+    let userAuthor = authorInput.value;
+    let userpages = pagesInput.value;
+    let userRead = readInput.checked;
+
+    let book = new Book(userTitle, userAuthor, userpages, userRead);
+    library.push(book);
+});
 
 closeWindow.addEventListener("click", hideAddBookWindow);
 
@@ -39,4 +53,4 @@ newBook.addEventListener("click", () => {
     mainWrapper.style.pointerEvents = "none";
     // Display the adding book window
     addBookWindow.style.display = "block";
-})
+});
