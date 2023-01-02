@@ -1,3 +1,11 @@
+// Selectors
+const buttons = document.querySelectorAll("button");
+const newBook = document.querySelector("#newbook");
+const body = document.querySelector("body");
+const mainWrapper = document.querySelector(".main-wrapper");
+const addBookWindow = document.querySelector(".add-book-window");
+const closeWindow = document.querySelector(".close");
+
 // Stores all created book objects.
 let library = [];
 
@@ -11,21 +19,21 @@ function addToLibrary() {
 
 }
 
-// Selectors
-const buttons = document.querySelectorAll("button");
-const newBook = document.querySelector("#newbook");
-const body = document.querySelector("body");
-const mainWrapper = document.querySelector(".main-wrapper");
+function hideAddBookWindow() {
+    console.log("Clicked!");
+    mainWrapper.style.opacity = "1";
+    mainWrapper.style.pointerEvents = "auto";
+    addBookWindow.style.display = "none";
+}
+
+
+closeWindow.addEventListener("click", hideAddBookWindow);
 
 newBook.addEventListener("click", () => {
     // Dim the site
-    mainWrapper.style.opacity = "0.2";
+    mainWrapper.style.opacity = "0.1";
     // Disable clicking outside of the addBookWindow
     mainWrapper.style.pointerEvents = "none";
-    // Create an element for adding books and add it to the site
-    const addBookWindow = document.createElement("div");
-    addBookWindow.classList.add("add-book-window");
-    body.appendChild(addBookWindow);
-
-
+    // Display the adding book window
+    addBookWindow.style.display = "block";
 })
