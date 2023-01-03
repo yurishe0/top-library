@@ -10,6 +10,7 @@ const titleInput = document.querySelector("#title");
 const authorInput = document.querySelector('#author');
 const pagesInput = document.querySelector('#pages');
 const readInput = document.querySelector('#read');
+const libraryContainer = document.querySelector('.library');
 
 // Stores all created book objects.
 let library = [];
@@ -20,6 +21,14 @@ function Book(title, author, pages, isRead) {
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+}
+
+function checkBookCount() {
+    if(libraryContainer.children.length === 0) {
+        const message = document.createElement("p");
+        message.innerHTML = "You have no books in your library. Add some!";
+        libraryContainer.appendChild(message);
+    }
 }
 
 // Adds a book to the library list.
@@ -56,3 +65,5 @@ newBook.addEventListener("click", () => {
     // Display the adding book window
     addBookWindow.style.display = "block";
 });
+
+checkBookCount();
