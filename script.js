@@ -57,14 +57,23 @@ function updateLibrary() {
         const pages = document.createElement("p");
         pages.innerHTML = book.pages;
 
+        const read = document.createElement("button");
+        if(book.isRead == true) {
+          read.innerHTML = "Read!";
+          read.classList.add("read");
+        } else {
+          read.innerHTML = "Not read!";
+          read.classList.add("not-read");
+        }
+
         bookContainer.appendChild(title);
         bookContainer.appendChild(author);
         bookContainer.appendChild(pages);
+        bookContainer.appendChild(read);
     })
 }
 
 function hideAddBookWindow() {
-  console.log("Clicked!");
   mainWrapper.style.opacity = "1";
   mainWrapper.style.pointerEvents = "auto";
   addBookWindow.style.display = "none";
