@@ -79,7 +79,9 @@ submitBook.addEventListener("click", function (event) {
   let userRead = readInput.checked;
 
   let book = new Book(userTitle, userAuthor, userpages, userRead);
+
   addToLibrary(book);
+  updateLibrary();
   hideAddBookWindow();
 });
 
