@@ -12,7 +12,7 @@ const pagesInput = document.querySelector("#pages");
 const readInput = document.querySelector("#read");
 const libraryContainer = document.querySelector(".library");
 
-// Stores all created book objects.
+// Stores all created book objects
 let library = [];
 
 // Book object constructor
@@ -23,6 +23,7 @@ function Book(title, author, pages, isRead) {
   this.isRead = isRead;
 }
 
+// Handles the change of the read status
 Book.prototype.changeReadStatus = function () {
   if (this.isRead == true) {
     this.isRead = false;
@@ -31,6 +32,7 @@ Book.prototype.changeReadStatus = function () {
   }
 };
 
+// Display a message on screen that there are no books in the library yet
 function checkBookCount() {
   if (libraryContainer.children.length === 0) {
     const message = document.createElement("p");
@@ -48,15 +50,19 @@ function addToLibrary(book) {
   library.push(book);
 }
 
-function getArrayIndex(book) {
-  return library.indexOf(book);
+// Reverts the opacity to normal and enables buttons after a book has been added
+function hideAddBookWindow() {
+  mainWrapper.style.opacity = "1";
+  mainWrapper.style.pointerEvents = "auto";
+  addBookWindow.style.display = "none";
 }
 
+// Refreshesh the library. Generates all books, one per one from the library[] array
 function updateLibrary() {
   libraryContainer.innerHTML = "";
 
   library.forEach((book) => {
-    let bookIndex = getArrayIndex(book);
+    let bookIndex = library.indexOf(book);
     const bookContainer = document.createElement("div");
     bookContainer.classList.add("book");
     bookContainer.setAttribute("data-index", bookIndex);
@@ -90,6 +96,7 @@ function updateLibrary() {
     close.addEventListener("click", () => {
       library.splice(bookContainer.getAttribute("data-index"), 1);
       updateLibrary();
+      checkBookCount();
     });
 
     bookContainer.appendChild(title);
@@ -100,12 +107,7 @@ function updateLibrary() {
   });
 }
 
-function hideAddBookWindow() {
-  mainWrapper.style.opacity = "1";
-  mainWrapper.style.pointerEvents = "auto";
-  addBookWindow.style.display = "none";
-}
-
+// Creates a new object with the given data and refreshes the library.
 submitBook.addEventListener("click", function (event) {
   event.preventDefault();
 
@@ -123,13 +125,12 @@ submitBook.addEventListener("click", function (event) {
 
 closeWindow.addEventListener("click", hideAddBookWindow);
 
+// Dims the site, displays the 'add book' window and disables buttons in the background.
 newBook.addEventListener("click", () => {
-  // Dim the site
   mainWrapper.style.opacity = "0.05";
-  // Disable clicking outside of the addBookWindow
   mainWrapper.style.pointerEvents = "none";
-  // Display the adding book window
   addBookWindow.style.display = "block";
 });
 
+// Displays the message about no books being in the library upon entering the site
 checkBookCount();
