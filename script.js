@@ -23,6 +23,14 @@ function Book(title, author, pages, isRead) {
   this.isRead = isRead;
 }
 
+Book.prototype.changeReadStatus = function () {
+  if (this.isRead == true) {
+    this.isRead = false;
+  } else if (this.isRead == false) {
+    this.isRead = true;
+  }
+};
+
 function checkBookCount() {
   if (libraryContainer.children.length === 0) {
     const message = document.createElement("p");
@@ -34,43 +42,62 @@ function checkBookCount() {
 // Adds a book to the library list.
 function addToLibrary(book) {
   if (!this.title || !this.author || !this.pages) {
-    console.log("The fields can not be left empty!")
+    console.log("The fields can not be left empty!");
   }
 
   library.push(book);
 }
 
+function getArrayIndex(book) {
+  return library.indexOf(book);
+}
+
 function updateLibrary() {
-    libraryContainer.innerHTML = '';
+  libraryContainer.innerHTML = "";
 
-    library.forEach(book => {
-        const bookContainer = document.createElement("div");
-        bookContainer.classList.add("book");
-        libraryContainer.appendChild(bookContainer);
+  library.forEach((book) => {
+    let bookIndex = getArrayIndex(book);
+    const bookContainer = document.createElement("div");
+    bookContainer.classList.add("book");
+    bookContainer.setAttribute("data-index", bookIndex);
+    libraryContainer.appendChild(bookContainer);
 
-        const title = document.createElement("h2");
-        title.innerHTML = book.title;
+    const title = document.createElement("h2");
+    title.innerHTML = book.title;
 
-        const author = document.createElement("h3");
-        author.innerHTML = book.author;
+    const author = document.createElement("h3");
+    author.innerHTML = book.author;
 
-        const pages = document.createElement("p");
-        pages.innerHTML = book.pages;
+    const pages = document.createElement("p");
+    pages.innerHTML = book.pages;
 
-        const read = document.createElement("button");
-        if(book.isRead == true) {
-          read.innerHTML = "Read!";
-          read.classList.add("read");
-        } else {
-          read.innerHTML = "Not read!";
-          read.classList.add("not-read");
-        }
+    const read = document.createElement("button");
+    if (book.isRead == true) {
+      read.innerHTML = "Read!";
+      read.classList.add("read");
+    } else {
+      read.innerHTML = "Not read!";
+      read.classList.add("not-read");
+    }
 
-        bookContainer.appendChild(title);
-        bookContainer.appendChild(author);
-        bookContainer.appendChild(pages);
-        bookContainer.appendChild(read);
-    })
+    read.addEventListener("click", () => {
+      library[bookIndex].changeReadStatus();
+      updateLibrary();
+    });
+
+    const close = document.createElement("button");
+    close.classList.add("book-close");
+    close.addEventListener("click", () => {
+      library.splice(bookContainer.getAttribute("data-index"), 1);
+      updateLibrary();
+    });
+
+    bookContainer.appendChild(title);
+    bookContainer.appendChild(author);
+    bookContainer.appendChild(pages);
+    bookContainer.appendChild(read);
+    bookContainer.appendChild(close);
+  });
 }
 
 function hideAddBookWindow() {
