@@ -35,7 +35,7 @@ Book.prototype.changeReadStatus = function () {
 
 // Display a message on screen that there are no books in the library yet
 function checkBookCount() {
-  if (libraryContainer.children.length === 0) {
+  if (library.length == 0) {
     const message = document.createElement("p");
     message.innerHTML = "You have no books in your library. Add some!";
     libraryContainer.appendChild(message);
@@ -45,12 +45,10 @@ function checkBookCount() {
 // Adds a book to the library list.
 function addToLibrary(book) {
   if (!book.title || !book.author || !book.pages) {
-    console.log("The fields can not be left empty!");
-    checkBookCount();
     return;
+  } else {
+    library.push(book);
   }
-
-  library.push(book);
 }
 
 // Reverts the opacity to normal and enables buttons after a book has been added
@@ -119,6 +117,7 @@ function clearLibrary() {
   console.log("Clearing!");
   library = [];
   updateLibrary();
+  checkBookCount();
 }
 
 // Creates a new object with the given data and refreshes the library.
@@ -134,6 +133,7 @@ submitBook.addEventListener("click", function (event) {
 
   addToLibrary(book);
   updateLibrary();
+  checkBookCount();
   hideAddBookWindow();
 });
 
