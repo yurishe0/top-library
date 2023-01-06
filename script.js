@@ -11,6 +11,7 @@ const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
 const readInput = document.querySelector("#read");
 const libraryContainer = document.querySelector(".library");
+const clearButton = document.querySelector("#clearall");
 
 // Stores all created book objects
 let library = [];
@@ -107,6 +108,12 @@ function updateLibrary() {
   });
 }
 
+function clearLibrary() {
+  console.log("Clearing!");
+  library = [];
+  updateLibrary();
+}
+
 // Creates a new object with the given data and refreshes the library.
 submitBook.addEventListener("click", function (event) {
   event.preventDefault();
@@ -124,6 +131,8 @@ submitBook.addEventListener("click", function (event) {
 });
 
 closeWindow.addEventListener("click", hideAddBookWindow);
+
+clearButton.addEventListener("click", clearLibrary);
 
 // Dims the site, displays the 'add book' window and disables buttons in the background.
 newBook.addEventListener("click", () => {
