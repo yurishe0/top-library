@@ -50,11 +50,16 @@ function addToLibrary(book) {
   library.push(book);
 }
 
-// Reverts the opacity to normal and enables buttons after a book has been added
+// Reverts the opacity to normal, enables buttons after a book has been added or the window has been closed, and clears the input fields.
 function hideAddBookWindow() {
   mainWrapper.style.opacity = "1";
   mainWrapper.style.pointerEvents = "auto";
   addBookWindow.style.display = "none";
+
+  titleInput.value= '';
+  authorInput.value= '';
+  pagesInput.value= '';
+  readInput.value= '';
 }
 
 // Refreshesh the library. Generates all books, one per one from the library[] array
