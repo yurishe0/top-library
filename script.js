@@ -57,6 +57,11 @@ function hideAddBookWindow() {
   mainWrapper.style.opacity = "1";
   mainWrapper.style.pointerEvents = "auto";
   addBookWindow.style.display = "none";
+
+  titleInput.value = '';
+  authorInput.value = '';
+  pagesInput.value = '';
+  readInput.checked = false;
 }
 
 // Refreshesh the library. Generates all books, one per one from the library[] array
