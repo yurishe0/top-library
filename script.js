@@ -44,8 +44,9 @@ function checkBookCount() {
 
 // Adds a book to the library list.
 function addToLibrary(book) {
-  if (!this.title || !this.author || !this.pages) {
+  if (!book.title || !book.author || !book.pages) {
     console.log("The fields can not be left empty!");
+    return;
   }
 
   library.push(book);
