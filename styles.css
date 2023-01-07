@@ -188,6 +188,7 @@ button[type="submit"] {
 
   background-color: rgb(40, 40, 43);
   border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 /* This is only shown when there are no books added yet */
