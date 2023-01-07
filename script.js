@@ -68,7 +68,7 @@ function generateError(errorContent) {
 
 function clearError() {
   let currentError = document.querySelector(".error");
-  if(currentError != null) {
+  if (currentError != null) {
     currentError.remove();
   }
 }
@@ -79,9 +79,9 @@ function hideAddBookWindow() {
   mainWrapper.style.pointerEvents = "auto";
   addBookWindow.style.display = "none";
 
-  titleInput.value = '';
-  authorInput.value = '';
-  pagesInput.value = '';
+  titleInput.value = "";
+  authorInput.value = "";
+  pagesInput.value = "";
   readInput.checked = false;
 }
 
