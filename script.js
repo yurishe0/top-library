@@ -10,6 +10,7 @@ const titleInput = document.querySelector("#title");
 const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
 const readInput = document.querySelector("#read");
+const libraryWrapper = document.querySelector(".library-container");
 const libraryContainer = document.querySelector(".library");
 const clearButton = document.querySelector("#clearall");
 
@@ -45,9 +46,30 @@ function checkBookCount() {
 // Adds a book to the library list.
 function addToLibrary(book) {
   if (!book.title || !book.author || !book.pages) {
+    generateError("You have to fill all the fields to add a book!");
     return;
   } else {
+    clearError();
     library.push(book);
+  }
+}
+
+function generateError(errorContent) {
+  clearError();
+  let errorContainer = document.createElement("div");
+  let errorMessage = document.createElement("p");
+
+  errorMessage.innerHTML = errorContent;
+  errorContainer.classList.add("error");
+
+  errorContainer.appendChild(errorMessage);
+  libraryWrapper.appendChild(errorContainer);
+}
+
+function clearError() {
+  let currentError = document.querySelector(".error");
+  if(currentError != null) {
+    currentError.remove();
   }
 }
 
@@ -63,7 +85,7 @@ function hideAddBookWindow() {
   readInput.checked = false;
 }
 
-// Refreshesh the library. Generates all books, one per one from the library[] array
+// Refreshesh the library, generates all books one per one from the library[] array
 function updateLibrary() {
   libraryContainer.innerHTML = "";
 

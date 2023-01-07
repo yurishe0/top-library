@@ -154,6 +154,7 @@ button[type="submit"] {
 
 .button-effect:hover {
   border-bottom: 4px solid rgb(188, 192, 194);
+  border-right: 4px solid rgb(188, 192, 194);
   margin-bottom: -4px;
   background-color: var(--primary-font-color);
   color: var(--primary-color);
@@ -170,6 +171,11 @@ button[type="submit"] {
 
 .library-container > h2 {
   font-size: clamp(16px, 2vw, 42px);
+}
+
+.error {
+  font-size: clamp(12px, 2vw, 24px);
+  color: rgb(187, 23, 23);
 }
 
 .library {
