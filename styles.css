@@ -174,8 +174,10 @@ button[type="submit"] {
 }
 
 .error {
-  font-size: clamp(12px, 2vw, 24px);
+  font-size: clamp(16px, 2vw, 24px);
+  text-align: center;
   color: rgb(187, 23, 23);
+  margin: 40px;
 }
 
 .library {
@@ -201,7 +203,8 @@ button[type="submit"] {
 .library > p {
   align-self: center;
   font-style: italic;
-  font-size: clamp(12px, 2vw, 24px);
+  text-align: center;
+  font-size: clamp(16px, 2vw, 24px);
 }
 
 .book {
