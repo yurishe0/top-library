@@ -136,7 +136,6 @@ function updateLibrary() {
 }
 
 function clearLibrary() {
-  console.log("Clearing!");
   library = [];
   updateLibrary();
   checkBookCount();
